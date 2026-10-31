@@ -1,0 +1,6 @@
+# ComfyUI install, models and outputs live here locally but are not part of this repo
+ComfyUI/
+logs/
+*.log
+__pycache__/
+.DS_Store
