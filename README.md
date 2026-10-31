@@ -36,7 +36,7 @@ All runs share one history in the browser.
    virtual environment at `ComfyUI\venv`:
 
    ```powershell
-   git clone https://github.com/incri7/sunprint
+   git clone https://github.com/paudelbaibhav/sunprint
    cd sunprint
    git clone https://github.com/comfyanonymous/ComfyUI
    cd ComfyUI
