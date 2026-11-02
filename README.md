@@ -1,5 +1,7 @@
 # Sunprint
 
+![Sunprint: one product photo turned into four ad shots](docs/banner.png)
+
 A local image and video studio on top of [ComfyUI](https://github.com/comfyanonymous/ComfyUI).
 One prompt box, no node graphs: type, attach a photo if you want, press generate.
 Everything runs on your own GPU. It was built and tested on a 6 GB laptop RTX 3060.
@@ -21,6 +23,32 @@ Everything runs on your own GPU. It was built and tested on a 6 GB laptop RTX 30
   change are reused when you run it again.
 
 All runs share one history in the browser.
+
+## See it work
+
+Everything below was made in one session on a laptop RTX 3060 with 6 GB of VRAM. Times are
+Sunprint's own timers and include loading the model.
+
+**1. Text to image** (Z-Image Turbo, 1024×1024, 63 s)
+
+![The studio after generating a product photo of a mug](docs/studio-text-to-image.jpg)
+
+**2. Edit:** "place this exact mug on a rustic wooden table next to a window" (FLUX.2 Klein, 46 s)
+
+![Before and after: the same mug moved into a morning-light scene](docs/edit-before-after.jpg)
+
+**3. Campaign mode:** one product photo and a description become 4 ad shots (about 3 min).
+The product stays the same in every shot.
+
+![Campaign storyboard with four shots of the same mug](docs/campaign-storyboard.jpg)
+
+**4. The shots animated and joined into an ad** (Wan 2.2, 5 s per shot, about 12–16 min each)
+
+<img src="docs/campaign-ad.gif" alt="The animated ad: studio shot, low angle, close-up of the gold sun" width="240">
+
+While a video renders, the studio shows each stage and an estimate measured on your machine:
+
+![Video progress screen](docs/video-progress.jpg)
 
 ## Requirements
 
@@ -74,6 +102,16 @@ Logs go to `logs\`.
 
 Plus the text encoders and VAEs listed in `download-models.bat`. Check each model's license on
 its Hugging Face page before using the output commercially.
+
+## Known limits
+
+- **Shots longer than 5 s can break down.** Longer clips are made from overlapping windows,
+  and on close-ups with fine texture the windows drift apart after a few seconds
+  ([#1](https://github.com/paudelbaibhav/sunprint/issues/1)). Keep campaign shots at 5 s, or
+  use **Continue this video**, which starts each new part from the last frame.
+- **Hands and people are hit and miss.** Product and scene shots are the strong case.
+- **Video is slow on small GPUs.** A 5 s clip takes about 12–16 minutes on 6 GB, and the GPU
+  runs near 87 °C the whole time. Raise the laptop and close heavy apps.
 
 ## Running without the launcher
 
